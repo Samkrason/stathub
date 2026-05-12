@@ -69,7 +69,7 @@ async function fetchPitcherStats(id, season) {
 
 export default async function handler(req, res) {
   try {
-    const date = req.query.date || new Date().toISOString().slice(0, 10)
+  const date = req.query.date || new Date(Date.now() - 7 * 3600 * 1000).toISOString().slice(0, 10)
     const now = Date.now()
     if (CACHE.date === date && CACHE.data && (now - CACHE.ts) < CACHE_MS) {
       return res.status(200).json({ ...CACHE.data, cached: true })
